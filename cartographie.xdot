@@ -1,0 +1,12 @@
+graph g {
+
+"10.213.255.254" -- "apacheria.cines.fr";
+"10.213.255.254" -- "remip-2000-te1-3-toulouse-rtr-021.noc.renater.fr";
+"10.213.255.254" -- "www.iutbeziers.fr";
+"10.213.255.254" -- "www.umontpellier.fr";
+"10.213.255.254" -- "xe0-1-9-paris2-rtr-131.noc.renater.fr";
+"178.33.100.18" -- "176.31.192.146";
+"193.48.249.97" -- "193.50.45.183";
+"remip-2000-te1-3-toulouse-rtr-021.noc.renater.fr" -- "193.48.249.97";
+"xe0-1-9-paris2-rtr-131.noc.renater.fr" -- "178.33.100.18";
+}

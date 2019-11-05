@@ -17,7 +17,7 @@ do
 
     # On vérifie avec quels protocoles la destination est joignable
     for protocole in "-I" "-U" "-T"; do
-        traceroute=`traceroute $protocole -q 1 -w 2 $dest_resolution -n|tail -n 1|awk '{print $2}'`
+        traceroute=`traceroute $protocole -q 1 -w 0.8 $dest_resolution -n|tail -n 1|awk '{print $2}'`
         if [ "$traceroute" == "$dest_resolution" ]; then
             tab_protocole=( ${tab_protocole[*]} $protocole )
         fi
@@ -29,7 +29,7 @@ do
     do
     
         for protocole in "${!tab_protocole[@]}"; do
-            hop=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 2 -A -n|grep -v "traceroute"|awk '{print $2,$3}'`
+            hop=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 0.8 -A -n|grep -v "traceroute"|awk '{print $2,$3}'`
             cible=`echo "$hop"|awk '{print $1}'`
 
             if [ "$cible" != "*" ]; then
@@ -47,7 +47,7 @@ do
                 if [ "${tab_protocole[$protocole]}" == "-U" ];then
                     for port_udp in $liste_port_udp
                     do
-                        hop_port=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 2 -A -n -p $port_udp|grep -v "traceroute"|awk '{print $2,$3}'`
+                        hop_port=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 0.8 -A -n -p $port_udp|grep -v "traceroute"|awk '{print $2,$3}'`
                         cible_port_udp=`echo "$hop_port"|awk '{print $1}'`
                         etoile_UDP=`echo "$cible_port_udp"|grep "*"|wc -l`
                         
@@ -61,7 +61,7 @@ do
                 if [ "${tab_protocole[$protocole]}" == "-T" ];then
                     for port_tcp in $liste_port_tcp
                     do
-                        hop_port=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 2 -A -n -p $port_tcp|grep -v "traceroute"|awk '{print $2,$3}'`
+                        hop_port=`traceroute ${tab_protocole[$protocole]} $dest_resolution -f $nbHop -m $nbHop -q 1 -w 0.8 -A -n -p $port_tcp|grep -v "traceroute"|awk '{print $2,$3}'`
                         cible_port_tcp=`echo "$hop_port"|awk '{print $1}'`
                         etoile_TCP=`echo "$cible_port_tcp"|grep "*"|wc -l`
                         

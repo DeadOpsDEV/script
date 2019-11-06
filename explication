@@ -1,0 +1,32 @@
+liste_udp=lire liste_udp.txt
+
+Pour chaque protocole
+faire
+    traceroute=Traceroute en fonction du protocole
+    Si traceroute égale destination
+        tab_protocole=ajouter le protocole
+    fin
+fait
+
+Pour nbHop de 1 à 30 (incémenter de 1)
+faire
+    Pour chaque protocole dans tab_protocole
+    faire
+        hop=champs de l'ip+as du noeud nbHop
+        cible=champs de l'ip de hop
+        Si il y a des étoiles dans cible
+            Si protocole est égale à -U
+                Pour chaque port_udp dans liste_udp
+                faire
+                    hop_port=traceroute avec port port_udp
+                    cible_port_udp=champs de l'ip de hop_port
+                    etoile_UDP=compte le nombre d'étoile de cible_port_udp
+                
+                    Si etoile_UDP différent de 1
+                        On arrête
+                    fin
+                fait
+                somme_etoile_UDP=somme_etoile_UDP+etoile_UDP
+            fin
+        fin
+    fait

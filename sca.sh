@@ -56,6 +56,9 @@ do
                             break
                         fi
                     done
+                    if [ "$etoile_UDP" == "1" ]; then
+                        echo "$hop_port hop n°$nbHop sur $dest" >> $dest.[${tab_protocole[$protocole]}].rte 
+                    fi
                     somme_etoile_UDP=$(($somme_etoile_UDP+$etoile_UDP))
                 fi
                 if [ "${tab_protocole[$protocole]}" == "-T" ];then
@@ -71,6 +74,9 @@ do
                             break
                         fi
                     done
+                    if [ "$etoile_TCP" == "1" ]; then
+                        echo "$hop_port hop n°$nbHop sur $dest" >> $dest.[${tab_protocole[$protocole]}].rte 
+                    fi
                     somme_etoile_TCP=$(($somme_etoile_TCP+$etoile_TCP))
                 fi
                 if [ "${tab_protocole[$protocole]}" == "-I" ]; then

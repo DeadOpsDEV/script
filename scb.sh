@@ -10,16 +10,11 @@ do
 
     for ((ligne_min=1 ; ligne_min<=ligne_max ; ligne_min++))
     do
-        ancienRouteur=`cat $fichier|head -n "$ligne_min"|tail -n 1|awk '{print $1}'`
-        nouveauRouteur=`cat $fichier|head -n "$(($ligne_min+1))"|tail -n 1|awk '{print $1}'`
-        as=`cat "$fichier"|head -n $ligne_min|tail -n 1|awk '{print $2}'|tr -cd '[:alnum:]'`
+        ancienRouteur=`cat $fichier|head -n "$ligne_min"|tail -n 1`
+        nouveauRouteur=`cat $fichier|head -n "$(($ligne_min+1))"|tail -n 1`
 
-        if [ $ancienRouteur != $nouveauRouteur ]; then
-            if [ "$as" == "" ]; then
-                echo "\"$ancienRouteur\" -- \"$nouveauRouteur\"[label=\"*\"];">>cartographie.txt
-            else
-                echo "\"$ancienRouteur\" -- \"$nouveauRouteur\"[label=\"$as\"];">>cartographie.txt
-            fi
+        if [ "$ancienRouteur" != "$nouveauRouteur" ]; then
+            echo "\"$ancienRouteur\" -- \"$nouveauRouteur\";">>cartographie.txt
         fi 
     done
                                                          
